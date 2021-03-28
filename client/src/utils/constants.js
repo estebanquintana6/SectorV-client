@@ -1,0 +1,1 @@
+export const GENERAL_STATE = "GENERAL_STATE";
