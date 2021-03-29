@@ -10,7 +10,7 @@ import { setCurrentUser, logoutUser } from './actions/authActions';
 import Login from './components/auth/Login/Login';
 import Register from './components/auth/Register/Register';
 
-import Dashboard from './components/Dashboard/Dashboard';
+import DashboardLayout from './components/Layout/DashboardLayout';
 
 import PrivateRoute from './components/PrivateRoute';
 
@@ -45,8 +45,7 @@ const App = () => {
         <Switch>
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
-          
-          <PrivateRoute exact path="/" component={Dashboard}/>
+          <PrivateRoute exact path="/" component={DashboardLayout}/>
         </Switch>
       </Router>
     </Provider>

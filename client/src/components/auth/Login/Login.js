@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../../actions/authActions';
 
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
+import { selectAuth } from '../../../utils/selectors';
+
 import './Login.css';
 
 
+const Login = ({ history }) => {
+  const auth = useSelector(selectAuth);
 
-const Login = ({ history, auth, loginUser }) => {
+  if (auth.isAuthenticated) {
+    history.push('/');
+  }
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  const goToPage = (route) => {
-    history.push(route);
-  };
+  const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -27,12 +31,8 @@ const Login = ({ history, auth, loginUser }) => {
       password,
     };
 
-    loginUser(userData);
+    dispatch(loginUser(userData));
   };
-
-  if (auth.isAuthenticated) {
-    history.push('/');
-  }
 
   return (
     <Container>
@@ -42,14 +42,14 @@ const Login = ({ history, auth, loginUser }) => {
       <Form onSubmit={onSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="secondary-light">
-            Correo electrónico / Teléfono
+            Correo electrónico
                   </Form.Label>
           <Form.Control
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="text"
             className="primary-dark"
-            placeholder="correo@mail.com / 444123456789"
+            placeholder="correo@mail.com"
             className="primary-dark"
           />
         </Form.Group>
@@ -76,15 +76,4 @@ const Login = ({ history, auth, loginUser }) => {
   );
 };
 
-Login.propTypes = {
-  loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors,
-});
-
-export default connect(mapStateToProps, { loginUser })(Login);
+export default Login;

@@ -1,1 +1,1 @@
-docker build --no-cache . -t template-frontend
+docker build . -t sectorv-frontend

@@ -1,0 +1,15 @@
+.openbtn {
+    font-size: 24px;
+    cursor: pointer;
+    background-color: lightblue;
+}
+
+#main {
+    transition: margin-left .5s;
+}
+
+.dashboard-body {
+    display: inline;
+    margin-left: 150pt;
+    font-size: 18px;
+}

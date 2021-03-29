@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import { registerUser, clearRegister } from '../../../actions/authActions';
+import { selectAuth } from '../../../utils/selectors';
 
 import swal from '@sweetalert/with-react';
 
 import { Button, Container, Col, Form, Row } from 'react-bootstrap';
 
+
 import './Register.css';
 
-const Register = ({ history, auth, registerUser }) => {
+const Register = ({ history }) => {
+
+  const auth = useSelector(selectAuth);
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -47,7 +52,7 @@ const Register = ({ history, auth, registerUser }) => {
       passwordConfirmation: password2,
     };
 
-    registerUser(newUser, history);
+    dispatch(registerUser(newUser));
   };
 
   return (
@@ -142,15 +147,4 @@ const Register = ({ history, auth, registerUser }) => {
   )
 };
 
-Register.propTypes = {
-  registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors,
-});
-
-export default connect(mapStateToProps, { registerUser })(withRouter(Register));
+export default Register;
