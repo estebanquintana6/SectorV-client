@@ -14,7 +14,7 @@ const Login = ({ history }) => {
   const auth = useSelector(selectAuth);
 
   if (auth.isAuthenticated) {
-    history.push('/');
+    history.push('/dashboard');
   }
 
   const [email, setEmail] = useState('');

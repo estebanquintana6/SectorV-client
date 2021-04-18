@@ -8,6 +8,17 @@
     transition: margin-left .5s;
 }
 
+#dashboard-content {
+    height: 100%;
+    width: 100%;
+}
+
+.full-size-div {
+    height: inherit;
+    width: inherit;
+    background: #e8e8e8;
+}
+
 .dashboard-body {
     display: inline;
     margin-left: 150pt;

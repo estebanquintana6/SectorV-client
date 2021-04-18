@@ -1,0 +1,31 @@
+.principal_content {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: stretch;
+    width: 100%;
+    float: none;
+    min-height: 580px;
+    height: 100%;
+    font-size: 12px;
+    padding: 0.8rem 0 1rem 1rem;
+    background: #e8e8e8;
+}
+
+@media screen and (min-width: 55em) {
+    .principal_content {
+        width: 70%;
+        float: right;
+        margin-top: 3rem;
+    }
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: auto;
+}
+
+.section-subtitle {
+    font-size: 1.75rem;
+    font-weight: normal;
+}

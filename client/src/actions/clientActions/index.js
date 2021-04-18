@@ -1,0 +1,1 @@
+export { registerClient } from './clientActions';
